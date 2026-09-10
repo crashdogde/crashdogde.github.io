@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中同-了解中国同志群体的真实故事与多元文化</title>
+    <meta name="description" content="中同是一个关注中国同志群体、多元性别议题与LGBTQ+文化的综合性信息平台。我们提供真实故事、文化观察、法律权益与心理支持等实用内容，促进理解与包容。">
+    <meta name="keywords" content="中同,中国同志,同志群体,LGBTQ+,多元性别,彩虹文化,同性恋,双性恋,跨性别,同志文化,心理健康,权益保障">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #faf7f5;
+            color: #2d2d2d;
+            line-height: 1.7;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* 顶部公告 */
+        .top-bar {
+            background: linear-gradient(90deg, #e06c8a, #d9467b);
+            color: #fff;
+            font-size: 0.85rem;
+            padding: 0.4rem 0;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .top-bar span {
+            opacity: 0.9;
+        }
+
+        /* 页眉 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d9467b;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #999;
+            margin-left: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .main-nav a {
+            font-size: 1rem;
+            color: #444;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #d9467b;
+            border-bottom-color: #d9467b;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f5f2f0;
+            border-radius: 40px;
+            padding: 0.3rem 0.3rem 0.3rem 1rem;
+        }
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.9rem;
+            width: 160px;
+            color: #333;
+        }
+        .search-box button {
+            background: #d9467b;
+            border: none;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        /* 主体 */
+        .main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 首屏 Hero */
+        .hero {
+            background: linear-gradient(135deg, #fbe7ef 0%, #fff0f6 50%, #f8e0e9 100%);
+            border-radius: 24px;
+            padding: 3rem 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: "🌈";
+            position: absolute;
+            right: 2rem;
+            bottom: 0.5rem;
+            font-size: 8rem;
+            opacity: 0.1;
+        }
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+        }
+        .hero-text h2 {
+            font-size: 2.2rem;
+            color: #b8325f;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            color: #6b4a57;
+            max-width: 600px;
+            margin-bottom: 1.2rem;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #fff;
+            color: #d9467b;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(217, 70, 123, 0.12);
+            font-size: 0.9rem;
+        }
+        .hero-image {
+            flex: 0 0 180px;
+            text-align: center;
+            font-size: 6rem;
+            opacity: 0.8;
+        }
+
+        /* 栏目通用 */
+        .section {
+            margin-bottom: 3.5rem;
+        }
+        .section-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #d9467b;
+            padding-left: 1rem;
+        }
+        .section-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d2d2d;
+        }
+        .section-title .more {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* 卡片网格 - 故事 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+        .story-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+        }
+        .story-card .thumb {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #fce7ef, #fdeaf1);
+        }
+        .story-card .content {
+            padding: 1.2rem 1.2rem 1.4rem;
+        }
+        .story-card .tag {
+            background: #fae3ec;
+            color: #b8325f;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+        .story-card h4 {
+            font-size: 1.2rem;
+            color: #2d2d2d;
+            margin-bottom: 0.5rem;
+        }
+        .story-card p {
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        /* 分类区块 */
+        .category-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .cat-item {
+            background: #fff;
+            border-radius: 40px;
+            padding: 0.6rem 1.8rem;
+            font-weight: 500;
+            color: #555;
+            border: 1px solid #eee;
+            transition: 0.2s;
+        }
+        .cat-item:hover {
+            border-color: #d9467b;
+            color: #d9467b;
+            background: #fff7fa;
+        }
+
+        /* 资讯列表 */
+        .news-list {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+        }
+        .news-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f5f0f2;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-date {
+            flex: 0 0 80px;
+            color: #bbb;
+            font-size: 0.85rem;
+        }
+        .news-title {
+            flex: 1;
+            color: #333;
+            font-weight: 500;
+        }
+        .news-title:hover {
+            color: #d9467b;
+        }
+        .news-cat {
+            font-size: 0.8rem;
+            background: #f7f1f3;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            color: #9a6c7d;
+        }
+
+        /* 双栏 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .resource-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .resource-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .resource-card ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #f0e6ea;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .resource-card ul li:last-child {
+            border-bottom: none;
+        }
+        .resource-card ul li::before {
+            content: "·";
+            color: #d9467b;
+            font-weight: bold;
+            margin-right: 0.6rem;
+        }
+
+        /* FAQ */
+        .faq-wrap {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #f1e9ec;
+            padding-bottom: 1.2rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 600;
+            color: #b8325f;
+            margin-bottom: 0.4rem;
+            display: flex;
+            gap: 8px;
+        }
+        .faq-a {
+            color: #666;
+            font-size: 0.95rem;
+            padding-left: 1.6rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2f2229;
+            color: #c9b6be;
+            margin-top: 4rem;
+            padding: 3rem 2rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .footer-brand h4 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            max-width: 300px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .footer-links ul li:first-child {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .footer-copy {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            border-top: 1px solid #44343c;
+            padding-top: 1.5rem;
+            color: #9c8792;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+            .main-nav ul {
+                justify-content: center;
+                gap: 1.2rem;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .search-box input {
+                flex: 1;
+            }
+            .hero {
+                padding: 2rem;
+            }
+            .hero-text h2 {
+                font-size: 1.6rem;
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .main {
+                padding: 1rem;
+            }
+            .hero-image {
+                display: none;
+            }
+            .section-title {
+                flex-direction: column;
+                gap: 0.4rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>🌈 让每一种爱都被看见 · 尊重 · 理解 · 包容</span>
+    </div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <h1>中同<span>多元文化平台</span></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">真实故事</a></li>
+                    <li><a href="#">文化观察</a></li>
+                    <li><a href="#">心理支持</a></li>
+                    <li><a href="#">法律权益</a></li>
+                    <li><a href="#">社群活动</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索关键词...">
+                <button>搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <!-- 首屏 -->
+        <section class="hero">
+            <div class="hero-text">
+                <h2>看见真实，拥抱多元</h2>
+                <p>中同聚焦中国同志群体的生活百态，从个人故事到社会观察，从心理健康到权益保障，我们以真诚与严谨呈现这个群体的真实面貌。</p>
+                <span class="hero-badge">理解 · 尊重 · 平等</span>
+            </div>
+            <div class="hero-image">🏳️‍🌈</div>
+        </section>
+
+        <!-- 分类导航 -->
+        <section class="section">
+            <div class="section-title">
+                <h3>探索内容方向</h3>
+                <span class="more">浏览全部 →</span>
+            </div>
+            <div class="category-row">
+                <a href="#" class="cat-item">自我认同</a>
+                <a href="#" class="cat-item">家庭关系</a>
+                <a href="#" class="cat-item">校园职场</a>
+                <a href="#" class="cat-item">伴侣相处</a>
+                <a href="#" class="cat-item">心理健康</a>
+                <a href="#" class="cat-item">法律权益</a>
+                <a href="#" class="cat-item">医疗健康</a>
+                <a href="#" class="cat-item">公益组织</a>
+                <a href="#" class="cat-item">影视书籍</a>
+                <a href="#" class="cat-item">海外参考</a>
+            </div>
+        </section>
+
+        <!-- 真实故事 -->
+        <section class="section">
+            <div class="section-title">
+                <h3>真实故事 · 同路人</h3>
+                <span class="more">更多故事 →</span>
+            </div>
+            <div class="card-grid">
+                <article class="story-card">
+                    <div class="thumb">🎭</div>
+                    <div class="content">
+                        <span class="tag">自我认同</span>
+                        <h4>三十岁才明白，我无需为真实的自己道歉</h4>
+                        <p>一位普通职场人的心路历程，从迷茫到接纳，他用了十年时间。</p>
+                    </div>
+                </article>
+                <article class="story-card">
+                    <div class="thumb">🏠</div>
+                    <div class="content">
+                        <span class="tag">家庭关系</span>
+                        <h4>妈妈对我说：你幸福就好</h4>
+                        <p>当父母逐渐理解并接纳，一顿晚餐成为和解的开始。</p>
+                    </div>
+                </article>
+                <article class="story-card">
+                    <div class="thumb">💼</div>
+                    <div class="content">
+                        <span class="tag">职场经历</span>
+                        <h4>我在办公室抽屉里，放了一张伴侣的照片</h4>
+                        <p>关于职场中的身份公开与边界，一位设计师的思考。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 资讯与观点 -->
+        <section class="section">
+            <div class="section-title">
+                <h3>资讯 · 观察 · 视野</h3>
+                <span class="more">查看全部</span>
+            </div>
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-date">2025-04-12</span>
+                    <a href="#" class="news-title">多地同志友好心理咨询服务资源更新汇总</a>
+                    <span class="news-cat">心理</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2025-04-08</span>
+                    <a href="#" class="news-title">一份关于校园多元性别社团的观察报告</a>
+                    <span class="news-cat">校园</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2025-04-02</span>
+                    <a href="#" class="news-title">影视作品中的同志形象变迁：从边缘到日常</a>
+                    <span class="news-cat">文化</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2025-03-28</span>
+                    <a href="#" class="news-title">同志伴侣财产公证与意定监护实用指南</a>
+                    <span class="news-cat">法律</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2025-03-20</span>
+                    <a href="#" class="news-title">跨年夜的独白：那些选择不回家的年轻人</a>
+                    <span class="news-cat">故事</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 双栏：支持与资源 -->
+        <section class="section">
+            <div class="section-title">
+                <h3>实用支持与资源</h3>
+            </div>
+            <div class="two-col">
+                <div class="resource-card">
+                    <h4>🧭 心理支持渠道</h4>
+                    <ul>
+                        <li>全国心理援助热线（24小时）</li>
+                        <li>同志友好咨询师推荐名录</li>
+                        <li>同伴支持小组线上活动</li>
+                        <li>自我认同与出柜心理辅导</li>
+                        <li>抑郁与焦虑自助指南</li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h4>📚 文化与阅读推荐</h4>
+                    <ul>
+                        <li>《我的同志儿子》——母亲视角</li>
+                        <li>纪录片《再见，我的新郎》</li>
+                        <li>学术研究：中国同性恋者生存报告</li>
+                        <li>同志文学精选书单</li>
+                        <li>影史经典同志电影盘点</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 法律与权益提示 -->
+        <section class="section">
+            <div class="section-title">
+                <h3>法律权益 · 你需要知道的</h3>
+            </div>
+            <div class="resource-card" style="margin-bottom: 1rem;">
+                <p style="color:#555; line-height:1.8;">目前中国法律未明确承认同性婚姻，但公民的人格尊严、隐私权、财产权等受到法律平等保护。同志群体在职场、医疗、租房等方面如遇歧视，可依法维权。建议提前了解意定监护、遗嘱、财产协议等法律工具，以保护自己和伴侣的合法权益。</p>
+            </div>
+            <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;">
+                <article class="story-card" style="box-shadow:none; background:#fdf6f8; border:1px solid #f3d9e2;">
+                    <div class="content">
+                        <h4 style="font-size:1rem;">📋 意定监护</h4>
+                        <p style="font-size:0.85rem;">为自己信任的人赋予照顾与医疗决定权。</p>
+                    </div>
+                </article>
+                <article class="story-card" style="box-shadow:none; background:#fdf6f8; border:1px solid #f3d9e2;">
+                    <div class="content">
+                        <h4 style="font-size:1rem;">📝 财产协议</h4>
+                        <p style="font-size:0.85rem;">通过书面约定明确共同财产，减少纠纷。</p>
+                    </div>
+                </article>
+                <article class="story-card" style="box-shadow:none; background:#fdf6f8; border:1px solid #f3d9e2;">
+                    <div class="content">
+                        <h4 style="font-size:1rem;">🛡️ 反歧视</h4>
+                        <p style="font-size:0.85rem;">遭遇不公正对待时，依法维护自身尊严。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <div class="section-title">
+                <h3>常见问题 FAQ</h3>
+            </div>
+            <div class="faq-wrap">
+                <div class="faq-item">
+                    <div class="faq-q">Q：什么是“中同”？</div>
+                    <div class="faq-a">“中同”通常指代“中国同志”或中国同志群体。本站以此为名，旨在搭建一个关于中国同志群体生活、文化、心理与权益的交流与信息平台。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q：我刚刚意识到自己的性取向，感到迷茫怎么办？</div>
+                    <div class="faq-a">这是非常正常的阶段。建议先给自己时间和空间去感受，不必急于定义。可以阅读过来人的故事，也可以联系专业的心理支持渠道或友善的同伴小组。你并不孤单。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q：如何与家人沟通自己的性取向？</div>
+                    <div class="faq-a">出柜是一个渐进的过程，没有标准答案。建议评估家人的接受度，选择合适时机，从表达爱与信任开始。也可以先借助书籍、影视等媒介试探态度。尊重自己的感受，安全永远第一。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Q：本站的内容来源可靠吗？</div>
+                    <div class="faq-a">我们坚持严谨的态度，所有资讯类内容会标注来源或注明为经验分享。故事栏目均为化名投稿或授权发布。我们不会虚构数据，也欢迎读者指正与补充。</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h4>中同 · 多元文化平台</h4>
+                <p>记录真实，传递温暖，促进理解。为每一位在路上的你，提供一盏小小的灯。</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li>关于我们</li>
+                    <li><a href="#">平台简介</a></li>
+                    <li><a href="#">编辑团队</a></li>
+                    <li><a href="#">投稿与故事</a></li>
+                </ul>
+                <ul>
+                    <li>支持与帮助</li>
+                    <li><a href="#">心理援助</a></li>
+                    <li><a href="#">法律咨询</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+                <ul>
+                    <li>关注我们</li>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">微博</a></li>
+                    <li><a href="#">小红书</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copy">
+            © 2025 中同·多元文化平台 · 本站内容仅供信息参考，不构成专业建议
+        </div>
+    </footer>
+
+</body>
+                                                                                                        </html>
